@@ -9,7 +9,6 @@ import Layout from '../../components/layouts/Layout';
 import Content from '../../components/fields/Content';
 
 const BasicPageTemplate = ({ data }) => {
-  console.log(data);
   const { title, summary, content } = data.contentfulBasicPage;
 
   return (
