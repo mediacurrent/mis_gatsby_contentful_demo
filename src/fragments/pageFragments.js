@@ -62,6 +62,9 @@ export const basicPageFragment = graphql`
       ... on ContentfulCard {
         ...cardFragment
       }
+      ... on ContentfulHeroMedia {
+        ...heroMediaFragment
+      }
     }
   }
 `
