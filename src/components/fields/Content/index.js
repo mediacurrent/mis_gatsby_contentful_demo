@@ -20,7 +20,7 @@ const Content = ({content}) => (
       switch (section['__typename']) {
         case "paragraph__breaker":
           return <ParagraphBreaker {...section} key={datakey} />;
-        case "paragraph__card":
+        case "ContentfulCard":
           return <ParagraphCard {...section} key={datakey} />;
         case "paragraph__card_list":
           section.items = section.r.items;

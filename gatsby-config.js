@@ -26,6 +26,13 @@ module.exports = {
       options: {}
     },
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN,
+      },
+    },
+    {
       resolve: `gatsby-plugin-sass`,
       options: {
         includePaths: ["node_modules", "src/global"]
@@ -40,6 +47,7 @@ module.exports = {
       }
     },
     `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -58,14 +66,6 @@ module.exports = {
         theme_color: `#EAEAEA`,
         display: `minimal-ui`,
         icon: `src/images/rain-favicon.png` // This path is relative to the root of the site.
-      }
-    },
-    {
-      resolve: `gatsby-source-drupal-preview`,
-      options: {
-        baseUrl: process.env.BASE_URL,
-        preview: true,
-        apiBase: `jsonapi` // optional, defaults to `jsonapi`
       }
     },
     `gatsby-source-rain`
