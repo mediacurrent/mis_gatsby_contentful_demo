@@ -100,7 +100,7 @@ const ParagraphHero = (props) => {
   const {classes, media, heading, eyebrow, text, linkTitle, linkUri} = props;
 
   return (
-    <section>
+    <section className="hero">
       {media && (
         <Media
           classes="hero__image"

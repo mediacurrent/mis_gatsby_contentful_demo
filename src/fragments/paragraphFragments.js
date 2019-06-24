@@ -70,7 +70,7 @@ export const heroMediaFragment = graphql`
     linkText
     media {
       fluid(
-        maxWidth: 2560
+        maxWidth: 1920
       ) {
         ...GatsbyContentfulFluid_withWebp
       }

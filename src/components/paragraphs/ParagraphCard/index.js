@@ -16,7 +16,15 @@ const ParagraphCard = (props) => {
   // );
 
 
-  const {classes, media, heading, subhead, eyebrow, text, linkTitle, linkUri} = props;
+  const {media, heading, subhead, eyebrow, text, linkTitle, linkUri} = props;
+  let {classes} = props;
+  classes = classes.map(classLabel => {
+    // @TODO probably best to map this to a content type with class name field.
+    // Not sure what wide-right class is supposed to be.
+    if (classLabel === 'Wide (Media Left)') {
+      return 'wide'
+    }
+  })
   classes.push('card')
   classes.push(props.datakey)
 
