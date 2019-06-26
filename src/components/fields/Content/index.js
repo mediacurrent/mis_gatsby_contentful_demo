@@ -20,7 +20,7 @@ const Content = ({content}) => (
       switch (section['__typename']) {
         case "paragraph__breaker":
           return <ParagraphBreaker {...section} key={datakey} />;
-        case "paragraph__card":
+        case "ContentfulCard":
           return <ParagraphCard {...section} key={datakey} />;
         case "paragraph__card_list":
           section.items = section.r.items;
@@ -30,7 +30,7 @@ const Content = ({content}) => (
         case "paragraph__gallery_carousel":
           section.items = section.r.items;
           return <ParagraphGalleryCarousel {...section} key={datakey} />;
-        case "paragraph__hero_media":
+        case "ContentfulHeroMedia":
           if (content.home_video_hero) {
             section.home_video_hero = true;
           }

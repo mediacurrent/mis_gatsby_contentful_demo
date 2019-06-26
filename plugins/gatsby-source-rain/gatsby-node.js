@@ -4,32 +4,17 @@ exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-    const homepageTemplate = path.resolve(`src/templates/NodeHomepageTemplate/index.js`);
-    const pageTemplate = path.resolve(`src/templates/NodePageTemplate/index.js`);
+    const pageTemplate = path.resolve(`src/templates/BasicPageTemplate/index.js`);
 
     resolve(
       graphql(
         `
           {
-            allNodeHomepage(
-              filter: {status: {eq:true}}
-            ) {
-              edges {
-                node {
-                  status
-                  nid:drupal_internal__nid
-                  path { alias }
-                }
-              }
-            }
-            allNodePage(
-              filter: {status: {eq:true}}
-            ) {
+            allContentfulBasicPage {
               edges {
                  node {
-                  status
-                  nid:drupal_internal__nid
-                  path { alias }
+                  id: contentful_id
+                  pageSlug
                 }
               }
             }
@@ -39,24 +24,13 @@ exports.createPages = ({ actions, graphql }) => {
         .then((result) => {
           if (result.errors) reject(result.errors);
           if (!result.data) reject('No data found. Fix your GraphQL stuff');
-          console.log('Creating Homepage Nodes');
-          result.data.allNodeHomepage.edges.forEach(({ node }) => {
-            const path = (node.path.alias == process.env.HOME_ALIAS) ? '/' : node.path.alias;
-            createPage({
-              path: path,
-              component: homepageTemplate,
-              context: {
-                slug: node.nid
-              }
-            })
-          });
           console.log('Creating Page Nodes');
-          result.data.allNodePage.edges.forEach(({ node }) => {
+          result.data.allContentfulBasicPage.edges.forEach(({ node }) => {
             createPage({
-              path: node.path.alias,
+              path: node.pageSlug,
               component: pageTemplate,
               context: {
-                slug: node.nid
+                id: node.id
               }
             })
           });

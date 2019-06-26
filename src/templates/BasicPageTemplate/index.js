@@ -8,9 +8,9 @@ import Layout from '../../components/layouts/Layout';
 // Fields
 import Content from '../../components/fields/Content';
 
-const NodePageTemplate = ({ data }) => {
-  const { title, summary } = data.nodePage;
-  const { content } = data.nodePage.r;
+const BasicPageTemplate = ({ data }) => {
+  const { title, summary, content } = data.contentfulBasicPage;
+
   return (
     <Layout>
       <Helmet>
@@ -22,12 +22,12 @@ const NodePageTemplate = ({ data }) => {
   )
 }
 
-export default NodePageTemplate;
+export default BasicPageTemplate;
 
 export const query = graphql`
-  query pageTemplate($slug: Int) {
-    nodePage(drupal_internal__nid: {eq:$slug}) {
-      ...nodePageFragment
+  query pageTemplate($id: String!) {
+    contentfulBasicPage(contentful_id: {eq:$id}) {
+      ...basicPageFragment
     }
   }
 `;
