@@ -83,21 +83,7 @@ const ParagraphHero = (props) => {
     mp4,
   }
 
-  // const classes = classNames(
-  //   "hero",
-  //   {[`${props.classes}`]: props.classes}
-  // );
-  // const card = props.r.cards[0];
-  // let media;
-  // try {
-  //   media = card.r.media.r.image.localFile.cis.f;
-  // }
-  // catch {
-  //   media = null;
-  // };
-
-  // @TODO do we need classes? It is not a field yet.
-  const {classes, media, heading, eyebrow, text, linkTitle, linkUri} = props;
+  const {media, heading, eyebrow, text, linkTitle, linkUri} = props;
 
   return (
     <section className="hero">
@@ -144,12 +130,6 @@ const ParagraphHero = (props) => {
 ParagraphHero.propTypes = {
   /** Turn on videos */
   home_video_hero: PropTypes.bool,
-  /** Extra classes */
-  classes: PropTypes.arrayOf(PropTypes.string),
-}
-
-ParagraphHero.defaultProps = {
-  classes: []
 }
 
 export default ParagraphHero;

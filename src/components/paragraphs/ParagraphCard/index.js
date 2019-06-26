@@ -6,45 +6,24 @@ import Heading from '../../fields/Heading';
 import Body from '../../fields/Body';
 import Button from '../../fields/Button';
 
+import classNames from 'classnames';
+
 import './style.scss';
 
 const ParagraphCard = (props) => {
-  // const classes = classNames(
-  //   'card',
-  //   {[`${props.datakey}`]: props.datakey},
-  //   {[`${props.classes}`]: props.classes}
-  // );
+  const {classes, media, heading, subhead, eyebrow, text, linkTitle, linkUri} = props;
 
-
-  const {media, heading, subhead, eyebrow, text, linkTitle, linkUri} = props;
-  let {classes} = props;
-  classes = classes.map(classLabel => {
-    // @TODO probably best to map this to a content type with class name field.
-    // Not sure what wide-right class is supposed to be.
-    if (classLabel === 'Wide (Media Left)') {
-      return 'wide'
-    }
-  })
-  classes.push('card')
-  classes.push(props.datakey)
+  // @TODO what is the right class for wide media right?
+  const className = {
+    card: true,
+    wide: classes.some((classLabel) => classLabel === 'Wide (Media Left)' || classLabel === 'Wide (Media Right)')
+  }
+  className[props.datakey] = true
 
   let imageClass = null;
-  // try {
-  //   imageClass = props.r.media.r.image.localFile.extension;
-  //   if (imageClass === 'svg') {
-  //     media = props.r.media.r.image.localFile.publicURL;
-  //   }
-  //   else if (props.r.media.r.image.localFile.cis.f) {
-  //     media = props.r.media.r.image.localFile.cis.f.srcWebp;
-  //   }
-  //   else {
-  //     media = props.r.media.r.image.localFile.cis.fixed.srcWebp;
-  //   }
-  // }
-  // catch{}
 
   return (
-    <article className={classes.join(' ')}>
+    <article className={classNames(className)}>
       {media && (
         <div className="card__icon">
           <img
