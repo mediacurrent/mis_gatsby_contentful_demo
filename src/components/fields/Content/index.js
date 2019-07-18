@@ -25,7 +25,7 @@ const Content = ({content}) => (
         case "paragraph__card_list":
           section.items = section.r.items;
           return <ParagraphCardList {...section} key={datakey} />;
-        case "paragraph__faq":
+        case "ContentfulFaq":
           return <ParagraphFaq {...section} key={datakey} />;
         case "paragraph__gallery_carousel":
           section.items = section.r.items;

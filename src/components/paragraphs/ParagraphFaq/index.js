@@ -7,10 +7,10 @@ import Heading from '../../fields/Heading';
 import './style.scss';
 
 const ParagraphFaq = (props) => {
-  const items = props.r.items.map(item => {
+  const items = props.items.map(item => {
     return({
       heading: item.question,
-      content: item.answer.value
+      content: item.answer.childMarkdownRemark.html
     })
   })
 
