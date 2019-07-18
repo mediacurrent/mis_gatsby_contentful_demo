@@ -23,15 +23,14 @@ const ParagraphFaq = (props) => {
 
 ParagraphFaq.propTypes = {
   title: PropTypes.string,
-  /** Array of items. */
-  r: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({
-      question: PropTypes.string,
-      answer: PropTypes.shape({
-        value: PropTypes.string
+  items: PropTypes.arrayOf(PropTypes.shape({
+    question: PropTypes.string,
+    answer: PropTypes.shape({
+      childMarkdownRemark: PropTypes.shape({
+        html: PropTypes.string
       })
-    }))
-  })
+    })
+  }))
 }
 
 export default ParagraphFaq;
