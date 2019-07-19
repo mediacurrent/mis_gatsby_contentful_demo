@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 
 import Body from '../../fields/Body';
 import Button from '../../fields/Button';
@@ -95,7 +94,7 @@ const ParagraphHero = (props) => {
           }" sizes="100vw" alt="" />`}
         />
       )}
-      {props.home_video_hero && (
+      {props._pageContext.home_video_hero && (
         <div className="hero__background">
           <video
             loop
@@ -125,11 +124,6 @@ const ParagraphHero = (props) => {
       </div>
     </section>
   );
-}
-
-ParagraphHero.propTypes = {
-  /** Turn on videos */
-  home_video_hero: PropTypes.bool,
 }
 
 export default ParagraphHero;

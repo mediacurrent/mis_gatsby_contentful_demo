@@ -59,15 +59,9 @@ export const basicPageFragment = graphql`
     shortTitle
     content {
       __typename
-      ... on ContentfulCard {
-        ...cardFragment
-      }
-      ... on ContentfulHeroMedia {
-        ...heroMediaFragment
-      }
-      ... on ContentfulFaq {
-        ...faqFragment
-      }
+      ...cardFragment
+      ...heroMediaFragment
+      ...faqFragment
     }
   }
 `
