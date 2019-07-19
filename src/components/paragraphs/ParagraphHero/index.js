@@ -7,13 +7,12 @@ import Heading from '../../fields/Heading';
 import Media from '../../fields/Media';
 
 // Homempage videos.
-import webm from './rain.webm'
-import mp4 from './rain.mp4'
+import webm from './rain.webm';
+import mp4 from './rain.mp4';
 
 import './style.scss';
 
 const ParagraphHero = (props) => {
-
   const videoRef = useRef(null);
 
   // Load Video on homepage.
@@ -60,8 +59,7 @@ const ParagraphHero = (props) => {
         setTimeout(() => {
           video.classList.add('video-loaded');
         }, 500);
-      }
-      else {
+      } else {
         const children = Array.prototype.slice.call(video.children);
         children.forEach((child) => {
           if (
@@ -79,10 +77,10 @@ const ParagraphHero = (props) => {
   });
   const hero_videos = {
     webm,
-    mp4,
-  }
+    mp4
+  };
 
-  const {media, heading, eyebrow, text, linkTitle, linkUri} = props;
+  const { media, heading, eyebrow, text, linkTitle, linkUri } = props;
 
   return (
     <section className="hero">
@@ -112,18 +110,23 @@ const ParagraphHero = (props) => {
         <div className="hero__content">
           <div className="section__container hero__content-container">
             <div className="hero__content-container-inner">
-              {eyebrow && (
-                <Eyebrow text={eyebrow} classes="hero__eyebrow" />
-              )}
+              {eyebrow && <Eyebrow text={eyebrow} classes="hero__eyebrow" />}
               {heading && <Heading level={1}>{heading}</Heading>}
-              {text && <Body classes="hero__body" text={text.childMarkdownRemark.html} />}
-              {linkUri && linkTitle && <Button uri={linkUri} title={linkTitle} />}
+              {text && (
+                <Body
+                  classes="hero__body"
+                  text={text.childMarkdownRemark.html}
+                />
+              )}
+              {linkUri && linkTitle && (
+                <Button uri={linkUri} title={linkTitle} />
+              )}
             </div>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default ParagraphHero;

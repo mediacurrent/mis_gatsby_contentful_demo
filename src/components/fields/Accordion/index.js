@@ -4,20 +4,19 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Accordion = (props) => {
-
   const [toggle, setToggle] = useState({});
   const toggleClickEvent = (key) => {
     const t = toggle[key] | 0;
-    setToggle({[`${key}`] :!t});
-  }
+    setToggle({ [`${key}`]: !t });
+  };
 
-  return(
+  return (
     <section className="accordion__wrapper">
       {props.items.map((item, key) => {
         const datakey = `accordion--${key}`;
-        return(
+        return (
           <article
-            className={`accordion${(toggle[datakey]) ? ' open' : ''}`}
+            className={`accordion${toggle[datakey] ? ' open' : ''}`}
             key={datakey}
           >
             <button
@@ -32,21 +31,23 @@ const Accordion = (props) => {
               className="accordion__content"
               aria-hidden={!toggle[datakey]}
               aria-labelledby={`accordion__content-${key}`}
-              dangerouslySetInnerHTML={{__html:item.content}}
+              dangerouslySetInnerHTML={{ __html: item.content }}
             />
           </article>
-        )
+        );
       })}
     </section>
-  )
-}
+  );
+};
 
 Accordion.propTypes = {
   /** Array of objects containing a heading and content string. */
-  items: PropTypes.arrayOf(PropTypes.shape({
-    heading: PropTypes.string,
-    content: PropTypes.string
-  }))
-}
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      heading: PropTypes.string,
+      content: PropTypes.string
+    })
+  )
+};
 
-export default Accordion
+export default Accordion;

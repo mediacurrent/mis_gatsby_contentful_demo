@@ -31,16 +31,22 @@ const Icon = (props) => {
     const attr = {
       width: svgWidth || null,
       height: svgHeight || null,
-      className: classNames('icon', `icon--${name}`, { [`${classes}`]: classes }),
+      className: classNames('icon', `icon--${name}`, {
+        [`${classes}`]: classes
+      }),
       'aria-hidden': ariaHidden || null
     };
     return (
-      <svg {...attr} {...rest} >
+      <svg {...attr} {...rest}>
         {title && <title>{title}</title>}
         {border && (
           <defs>
             <filter id="shadow">
-              <feDropShadow dx={border.x} dy={border.y} stdDeviation={border.deviation} />
+              <feDropShadow
+                dx={border.x}
+                dy={border.y}
+                stdDeviation={border.deviation}
+              />
             </filter>
           </defs>
         )}
