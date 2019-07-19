@@ -1,4 +1,4 @@
-// import { graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 // export const breakerFragment = graphql`
 //   fragment breakerFragment on paragraph__breaker {
@@ -74,6 +74,21 @@ export const heroMediaFragment = graphql`
       ) {
         ...GatsbyContentfulFluid_withWebp
       }
+    }
+  }
+`
+
+export const faqFragment = graphql`
+  fragment faqFragment on ContentfulFaq {
+    title
+    items: faqItems {
+      question
+      answer {
+        childMarkdownRemark {
+          html
+        }
+      }
+      link
     }
   }
 `

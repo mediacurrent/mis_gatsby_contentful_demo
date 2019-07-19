@@ -7,10 +7,10 @@ import Heading from '../../fields/Heading';
 import './style.scss';
 
 const ParagraphFaq = (props) => {
-  const items = props.r.items.map(item => {
+  const items = props.items.map(item => {
     return({
       heading: item.question,
-      content: item.answer.value
+      content: item.answer.childMarkdownRemark.html
     })
   })
 
@@ -23,15 +23,14 @@ const ParagraphFaq = (props) => {
 
 ParagraphFaq.propTypes = {
   title: PropTypes.string,
-  /** Array of items. */
-  r: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({
-      question: PropTypes.string,
-      answer: PropTypes.shape({
-        value: PropTypes.string
+  items: PropTypes.arrayOf(PropTypes.shape({
+    question: PropTypes.string,
+    answer: PropTypes.shape({
+      childMarkdownRemark: PropTypes.shape({
+        html: PropTypes.string
       })
-    }))
-  })
+    })
+  }))
 }
 
 export default ParagraphFaq;
