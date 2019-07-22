@@ -3,6 +3,7 @@ import ParagraphHero from '../../paragraphs/ParagraphHero';
 import ParagraphFaq from '../../paragraphs/ParagraphFaq';
 import ParagraphCardList from '../../paragraphs/ParagraphCardList';
 import ParagraphQuote from '../../paragraphs/ParagraphQuote';
+import ParagraphMap from '../../paragraphs/ParagraphMap';
 
 import { graphql } from 'gatsby';
 
@@ -26,6 +27,10 @@ export const componentManifest = {
   ContentfulQuote: {
     label: 'Quote',
     component: ParagraphQuote
+  },
+  ContentfulMap: {
+    label: 'Map',
+    component: ParagraphMap
   }
 };
 
@@ -105,5 +110,23 @@ export const quoteFragment = graphql`
     quote
     name: author
     job: jobTitle
+  }
+`;
+
+export const mapFragment = graphql`
+  fragment mapFragment on ContentfulMap {
+    body: address {
+      childMarkdownRemark {
+        html
+      }
+    }
+    heading: title
+    eyebrow: shortTitle
+    linkUri
+    linkTitle
+    map {
+      lng: lon
+      lat
+    }
   }
 `;
