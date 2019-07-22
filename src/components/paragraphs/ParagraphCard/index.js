@@ -17,7 +17,7 @@ const ParagraphCard = ({
   subhead,
   eyebrow,
   text,
-  linkTitle,
+  linkText,
   linkUri,
   datakey
 }) => {
@@ -63,8 +63,8 @@ const ParagraphCard = ({
             />
           </Body>
         )}
-        {linkUri && linkTitle && (
-          <Button uri={linkUri} title={linkTitle} classes="card__link" />
+        {linkUri && linkText && (
+          <Button uri={linkUri} title={linkText} classes="card__link" />
         )}
       </div>
     </article>
@@ -86,7 +86,7 @@ ParagraphCard.propTypes = {
   subheading: PropTypes.string,
   /** CTA */
   linkUri: PropTypes.string,
-  linkTitle: PropTypes.string,
+  linkText: PropTypes.string,
   /** Media Component Properties. */
   media: PropTypes.shape({
     /** Image Tag */
