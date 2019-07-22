@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import './style.scss';
 
 const ParagraphCard = ({
-  classes = [],
+  classes,
   media,
   heading,
   subhead,
@@ -21,6 +21,9 @@ const ParagraphCard = ({
   linkUri,
   datakey
 }) => {
+  if (!classes) {
+    classes = [];
+  }
   // @TODO what is the right class for wide media right?
   const className = {
     card: true,
