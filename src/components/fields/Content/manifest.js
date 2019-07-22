@@ -1,6 +1,7 @@
 import ParagraphCard from '../../paragraphs/ParagraphCard';
 import ParagraphHero from '../../paragraphs/ParagraphHero';
 import ParagraphFaq from '../../paragraphs/ParagraphFaq';
+import ParagraphCardList from '../../paragraphs/ParagraphCardList';
 
 import { graphql } from 'gatsby';
 
@@ -16,6 +17,10 @@ export const componentManifest = {
   ContentfulFaq: {
     label: 'FAQ',
     component: ParagraphFaq
+  },
+  ContentfulCardList: {
+    label: 'Card List',
+    component: ParagraphCardList
   }
 };
 
@@ -51,7 +56,22 @@ export const cardFragment = graphql`
       fluid(maxWidth: 2560) {
         ...GatsbyContentfulFluid_withWebp
       }
+      file {
+        contentType
+        url
+      }
     }
+  }
+`;
+
+export const cardListFragment = graphql`
+  fragment cardListFragment on ContentfulCardList {
+    title
+    items: card {
+      ...cardFragment
+    }
+    linkUri: link
+    linkText
   }
 `;
 

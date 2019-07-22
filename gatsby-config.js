@@ -1,6 +1,6 @@
 // Load environment variables from a .env file into process.env.
 // Check out https://www.gatsbyjs.org/docs/environment-variables/ for more.
-require("dotenv").config({
+require('dotenv').config({
   path: `.env`
 });
 
@@ -11,31 +11,31 @@ module.exports = {
     author: `@mediacurrent`,
     menuLinks: [
       {
-        uri: "/page/about-rain",
-        title: "About Rain"
+        uri: '/page/about-contentful',
+        title: 'About Rain/Contentful'
       },
       {
-        uri: "/page/partner-us",
-        title: "Partner With Us"
+        uri: '/page/partner-us',
+        title: 'Partner With Us'
       }
     ]
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-netlify-cache",
+      resolve: 'gatsby-plugin-netlify-cache',
       options: {}
     },
     {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN,
-      },
+        accessToken: process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN
+      }
     },
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        includePaths: ["node_modules", "src/global"]
+        includePaths: ['node_modules', 'src/global']
       }
     },
     `gatsby-plugin-react-helmet`,
@@ -53,8 +53,8 @@ module.exports = {
       options: {
         useMozJpeg: true,
         stripMetadata: true,
-        defaultQuality: 75,
-      },
+        defaultQuality: 75
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,

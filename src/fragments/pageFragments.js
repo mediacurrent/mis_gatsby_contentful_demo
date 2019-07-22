@@ -62,6 +62,7 @@ export const basicPageFragment = graphql`
       ...cardFragment
       ...heroMediaFragment
       ...faqFragment
+      ...cardListFragment
     }
   }
 `;
