@@ -2,6 +2,7 @@ import ParagraphCard from '../../paragraphs/ParagraphCard';
 import ParagraphHero from '../../paragraphs/ParagraphHero';
 import ParagraphFaq from '../../paragraphs/ParagraphFaq';
 import ParagraphCardList from '../../paragraphs/ParagraphCardList';
+import ParagraphQuote from '../../paragraphs/ParagraphQuote';
 
 import { graphql } from 'gatsby';
 
@@ -21,6 +22,10 @@ export const componentManifest = {
   ContentfulCardList: {
     label: 'Card List',
     component: ParagraphCardList
+  },
+  ContentfulQuote: {
+    label: 'Quote',
+    component: ParagraphQuote
   }
 };
 
@@ -92,5 +97,13 @@ export const heroMediaFragment = graphql`
         ...GatsbyContentfulFluid_withWebp
       }
     }
+  }
+`;
+
+export const quoteFragment = graphql`
+  fragment quoteFragment on ContentfulQuote {
+    quote
+    name: author
+    job: jobTitle
   }
 `;
