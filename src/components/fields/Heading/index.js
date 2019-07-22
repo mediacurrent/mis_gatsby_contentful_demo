@@ -5,19 +5,25 @@ import classNames from 'classnames';
 import './style.scss';
 
 const Heading = (props) => {
-  const level = props.level || "2";
+  const level = props.level || '2';
   const Element = `h${level}`;
   const classes = classNames({
     heading: true,
     [`heading-${level}`]: true,
     [`${props.classes}`]: props.classes
-  })
-  return(
+  });
+  return (
     <Element className={classes}>
-      {props.url ? (<a href={props.url} className="heading--link">{props.children }</a>) : props.children}
+      {props.url ? (
+        <a href={props.url} className="heading--link">
+          {props.children}
+        </a>
+      ) : (
+        props.children
+      )}
     </Element>
-  )
-}
+  );
+};
 
 Heading.propTypes = {
   /** Title Text */
@@ -28,6 +34,6 @@ Heading.propTypes = {
   classes: PropTypes.string,
   /** Optional URL to make the Heading a link. */
   url: PropTypes.string
-}
+};
 
 export default Heading;

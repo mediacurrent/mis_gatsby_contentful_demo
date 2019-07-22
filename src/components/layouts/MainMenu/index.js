@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from "gatsby";
+import { Link } from 'gatsby';
 
 import './style.scss';
 
-const MainMenu = ({menuLinks}) => (
+const MainMenu = ({ menuLinks }) => (
   <nav className="main-menu" aria-label="Main Menu">
     <ul className="main-menu__list">
       {menuLinks.map((link, key) => (
@@ -29,6 +29,6 @@ MainMenu.propTypes = {
       title: PropTypes.string
     })
   )
-}
+};
 
 export default MainMenu;

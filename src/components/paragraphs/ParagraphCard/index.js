@@ -11,14 +11,27 @@ import classNames from 'classnames';
 import './style.scss';
 
 const ParagraphCard = (props) => {
-  const {classes, media, heading, subhead, eyebrow, text, linkTitle, linkUri} = props;
+  const {
+    classes,
+    media,
+    heading,
+    subhead,
+    eyebrow,
+    text,
+    linkTitle,
+    linkUri
+  } = props;
 
   // @TODO what is the right class for wide media right?
   const className = {
     card: true,
-    wide: classes.some((classLabel) => classLabel === 'Wide (Media Left)' || classLabel === 'Wide (Media Right)')
-  }
-  className[props.datakey] = true
+    wide: classes.some(
+      (classLabel) =>
+        classLabel === 'Wide (Media Left)' ||
+        classLabel === 'Wide (Media Right)'
+    )
+  };
+  className[props.datakey] = true;
 
   let imageClass = null;
 
@@ -37,19 +50,22 @@ const ParagraphCard = (props) => {
         {eyebrow && <Eyebrow text={eyebrow} />}
         {heading && <Heading level={3}>{heading}</Heading>}
         {subhead && <Heading level={4}>{subhead}</Heading>}
-        {text &&
-          (<Body>
+        {text && (
+          <Body>
             <div
               dangerouslySetInnerHTML={{
-                __html: text.childMarkdownRemark.html,
+                __html: text.childMarkdownRemark.html
               }}
             />
-          </Body>)}
-        {linkUri && linkTitle && <Button uri={linkUri} title={linkTitle} classes="card__link" />}
+          </Body>
+        )}
+        {linkUri && linkTitle && (
+          <Button uri={linkUri} title={linkTitle} classes="card__link" />
+        )}
       </div>
     </article>
   );
-}
+};
 
 ParagraphCard.propTypes = {
   /** Content */
@@ -78,10 +94,10 @@ ParagraphCard.propTypes = {
   }),
   /** Additional classes. */
   classes: PropTypes.arrayOf(PropTypes.string)
-}
+};
 
 ParagraphCard.defaultProps = {
   classes: []
-}
+};
 
 export default ParagraphCard;

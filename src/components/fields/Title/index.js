@@ -6,18 +6,14 @@ import './style.scss';
 
 const Title = (props) => {
   const classes = classNames({
-    'title': true,
-    [`${props.classes}`] : props.classes
+    title: true,
+    [`${props.classes}`]: props.classes
   });
   const text = props.text || props.children;
   const level = props.level || 2;
   const Element = `h${level}`;
-  return(
-    <Element className={classes}>
-      { text }
-    </Element>
-  );
-}
+  return <Element className={classes}>{text}</Element>;
+};
 
 Title.propTypes = {
   /** Tag level. Defaults to 2 */
@@ -26,10 +22,10 @@ Title.propTypes = {
   classes: PropTypes.string,
   /** Content of title. */
   text: PropTypes.string
-}
+};
 
 Title.defaultProps = {
   level: 2
-}
+};
 
 export default Title;

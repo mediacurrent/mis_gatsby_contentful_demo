@@ -8,18 +8,16 @@ const Eyebrow = (props) => {
   const classes = classNames({
     eyebrow: true,
     [`${props.classes}`]: props.classes
-  })
+  });
 
-  return(
-    <span className={classes}>
-      {(props.text) ? props.text : props.children}
-    </span>
+  return (
+    <span className={classes}>{props.text ? props.text : props.children}</span>
   );
-}
+};
 
 Eyebrow.propTypes = {
   classes: PropTypes.string,
   text: PropTypes.string
-}
+};
 
 export default Eyebrow;

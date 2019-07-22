@@ -5,14 +5,11 @@ import classNames from 'classnames';
 import './style.scss';
 
 const Button = (button) => {
-
-  const href = button.uri ? button.uri.replace(/^internal:/, "") : '';
+  const href = button.uri ? button.uri.replace(/^internal:/, '') : '';
   const info = button.info || button.title;
-  const buttonClasses = classNames(
-    'btn',
-    'rounded',
-    {[`${button.classes}`]: button.classes}
-  );
+  const buttonClasses = classNames('btn', 'rounded', {
+    [`${button.classes}`]: button.classes
+  });
   const Element = href ? 'a' : 'button';
   const onClickCallback = (e) => {
     if (typeof button.onClick === 'function') {
@@ -21,7 +18,7 @@ const Button = (button) => {
     }
   };
 
-  return(
+  return (
     <Element
       className={buttonClasses}
       href={href}

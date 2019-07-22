@@ -19,14 +19,14 @@ const BasicPageTemplate = ({ data }) => {
       </Helmet>
       <Content content={content} />
     </Layout>
-  )
-}
+  );
+};
 
 export default BasicPageTemplate;
 
 export const query = graphql`
   query pageTemplate($id: String!) {
-    contentfulBasicPage(contentful_id: {eq:$id}) {
+    contentfulBasicPage(contentful_id: { eq: $id }) {
       ...basicPageFragment
     }
   }
