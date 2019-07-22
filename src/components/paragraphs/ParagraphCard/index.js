@@ -10,18 +10,20 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-const ParagraphCard = (props) => {
-  const {
-    classes,
-    media,
-    heading,
-    subhead,
-    eyebrow,
-    text,
-    linkTitle,
-    linkUri
-  } = props;
-
+const ParagraphCard = ({
+  classes,
+  media,
+  heading,
+  subhead,
+  eyebrow,
+  text,
+  linkTitle,
+  linkUri,
+  datakey
+}) => {
+  if (!classes) {
+    classes = [];
+  }
   // @TODO what is the right class for wide media right?
   const className = {
     card: true,
@@ -31,18 +33,20 @@ const ParagraphCard = (props) => {
         classLabel === 'Wide (Media Right)'
     )
   };
-  className[props.datakey] = true;
+  className[datakey] = true;
 
-  let imageClass = null;
+  const mediaClasses = {
+    svg: media && media.file.contentType === 'image/svg+xml'
+  };
 
   return (
     <article className={classNames(className)}>
       {media && (
         <div className="card__icon">
           <img
-            className={imageClass}
-            src={media.fluid.src}
-            alt={props.subhead}
+            className={classNames(mediaClasses)}
+            src={media.fluid.src ? media.fluid.src : media.file.url}
+            alt={subhead}
           />
         </div>
       )}
