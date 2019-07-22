@@ -1,48 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Paragraphs
-import ParagraphBreaker from '../../paragraphs/ParagraphBreaker';
-import ParagraphCard from '../../paragraphs/ParagraphCard';
-import ParagraphCardList from '../../paragraphs/ParagraphCardList';
-import ParagraphFaq from '../../paragraphs/ParagraphFaq';
-import ParagraphGalleryCarousel from '../../paragraphs/ParagraphGalleryCarousel';
-import ParagraphHero from '../../paragraphs/ParagraphHero';
-import ParagraphMap from '../../paragraphs/ParagraphMap';
-import ParagraphQuote from '../../paragraphs/ParagraphQuote';
+import {componentManifest} from './manifest.js'
 
 const Content = ({content}) => (
   <>
     {content.map((section, i) => {
-      const datakey = `paragraph-${section['__typename']}--${i}`;
+      const componentType = section['__typename']
+      const datakey = `paragraph-${componentType}--${i}`;
       section.datakey = datakey;
 
-      switch (section['__typename']) {
-        case "paragraph__breaker":
-          return <ParagraphBreaker {...section} key={datakey} />;
-        case "ContentfulCard":
-          return <ParagraphCard {...section} key={datakey} />;
-        case "paragraph__card_list":
-          section.items = section.r.items;
-          return <ParagraphCardList {...section} key={datakey} />;
-        case "ContentfulFaq":
-          return <ParagraphFaq {...section} key={datakey} />;
-        case "paragraph__gallery_carousel":
-          section.items = section.r.items;
-          return <ParagraphGalleryCarousel {...section} key={datakey} />;
-        case "ContentfulHeroMedia":
-          if (content.home_video_hero) {
-            section.home_video_hero = true;
-          }
-          return <ParagraphHero {...section} key={datakey} />;
-        case "paragraph__map":
-          return <ParagraphMap {...section} key={datakey} />;
-        case "paragraph__quote":
-          return <ParagraphQuote {...section} key={datakey} />;
-        default:
-          console.log(section['__typename']);
-          return '';
+      if (componentManifest[componentType]) {
+        const componentDefinition = componentManifest[componentType]
+        const Component = componentDefinition.component;
+        return <Component {...section} _pageContext={{...content}} key={datakey} />
       }
+
+      console.log(section['__typename'])
+      return null
     })}
   </>
 );
