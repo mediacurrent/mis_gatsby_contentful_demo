@@ -81,10 +81,8 @@ ParagraphMap.propTypes = {
   }),
   heading: PropTypes.string,
   eyebrow: PropTypes.string,
-  link: PropTypes.shape({
-    uri: PropTypes.string,
-    title: PropTypes.string
-  })
+  linkUri: PropTypes.string,
+  linkTitle: PropTypes.string
 };
 
 ParagraphMap.defaultProps = {
