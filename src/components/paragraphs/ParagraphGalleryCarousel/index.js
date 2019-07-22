@@ -78,18 +78,29 @@ const ParagraphGalleryCarousel = ({ title, subhead, items, pid }) => {
 ParagraphGalleryCarousel.propTypes = {
   /** Optional Title */
   title: PropTypes.string,
-  /** Optional Title level. Defaults to 2 */
-  title_level: PropTypes.number,
   /** Optional Intro */
   subhead: PropTypes.string,
-  /** Array of items [{src, alt, thumb:[{src, alt}]}] */
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      src: PropTypes.string,
-      alt: PropTypes.string,
+      heading: PropTypes.string,
+      subhead: PropTypes.string,
+      eyebrow: PropTypes.string,
+      text: PropTypes.shape({
+        childMarkdownRemark: PropTypes.shape({
+          html: PropTypes.string
+        })
+      }),
       thumb: PropTypes.shape({
-        src: PropTypes.string,
-        alt: PropTypes.string
+        fluid: PropTypes.shape({
+          src: PropTypes.string,
+          srcSet: PropTypes.string
+        })
+      }),
+      media: PropTypes.shape({
+        fluid: PropTypes.shape({
+          src: PropTypes.string,
+          srcSet: PropTypes.string
+        })
       })
     })
   )
