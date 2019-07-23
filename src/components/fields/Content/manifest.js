@@ -4,7 +4,8 @@ import ParagraphFaq from '../../paragraphs/ParagraphFaq';
 import ParagraphCardList from '../../paragraphs/ParagraphCardList';
 import ParagraphQuote from '../../paragraphs/ParagraphQuote';
 import ParagraphMap from '../../paragraphs/ParagraphMap';
-import GalleryCarousel from '../../paragraphs/ParagraphGalleryCarousel';
+import ParagraphGalleryCarousel from '../../paragraphs/ParagraphGalleryCarousel';
+import ParagraphBreaker from '../../paragraphs/ParagraphBreaker';
 
 import { graphql } from 'gatsby';
 
@@ -35,7 +36,11 @@ export const componentManifest = {
   },
   ContentfulGalleryCarousel: {
     label: 'Gallery Carousel',
-    component: GalleryCarousel
+    component: ParagraphGalleryCarousel
+  },
+  ContentfulBreaker: {
+    label: 'Breaker',
+    component: ParagraphBreaker
   }
 };
 
@@ -148,5 +153,24 @@ export const galleryCarouselFragment = graphql`
         }
       }
     }
+  }
+`;
+
+export const breakerFragment = graphql`
+  fragment breakerFragment on ContentfulBreaker {
+    eyebrow: shortTitle
+    heading: title
+    media {
+      fluid(maxWidth: 1920) {
+        ...GatsbyContentfulFluid_withWebp
+      }
+    }
+    text: summary {
+      childMarkdownRemark {
+        html
+      }
+    }
+    linkUri: link
+    linkText
   }
 `;
