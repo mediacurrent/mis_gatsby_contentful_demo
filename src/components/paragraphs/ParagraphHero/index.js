@@ -80,7 +80,7 @@ const ParagraphHero = (props) => {
     mp4
   };
 
-  const { media, heading, eyebrow, text, linkTitle, linkUri } = props;
+  const { media, heading, eyebrow, text, linkTitle, linkUri, slug } = props;
 
   return (
     <section className="hero">
@@ -92,7 +92,7 @@ const ParagraphHero = (props) => {
           }" sizes="100vw" alt="" />`}
         />
       )}
-      {props._pageContext.home_video_hero && (
+      {!slug && (
         <div className="hero__background">
           <video
             loop

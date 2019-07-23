@@ -57,6 +57,7 @@ export const basicPageFragment = graphql`
   fragment basicPageFragment on ContentfulBasicPage {
     title
     shortTitle
+    slug: pageSlug
     content {
       __typename
       ...cardFragment
