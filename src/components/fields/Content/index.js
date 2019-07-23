@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { componentManifest } from './manifest.js';
 
-const Content = ({ content }) => (
+const Content = ({ content, slug }) => (
   <>
     {content.map((section, i) => {
       const componentType = section['__typename'];
@@ -13,9 +13,7 @@ const Content = ({ content }) => (
       if (componentManifest[componentType]) {
         const componentDefinition = componentManifest[componentType];
         const Component = componentDefinition.component;
-        return (
-          <Component {...section} _pageContext={{ ...content }} key={datakey} />
-        );
+        return <Component {...section} slug={slug} key={datakey} />;
       }
 
       console.log(section['__typename']);

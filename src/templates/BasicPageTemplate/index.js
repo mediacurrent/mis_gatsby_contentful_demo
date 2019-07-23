@@ -9,15 +9,15 @@ import Layout from '../../components/layouts/Layout';
 import Content from '../../components/fields/Content';
 
 const BasicPageTemplate = ({ data }) => {
-  const { title, summary, content } = data.contentfulBasicPage;
+  const { title, summary, content, slug } = data.contentfulBasicPage;
 
   return (
     <Layout>
       <Helmet>
         <title>{title} | Mediacurrent</title>
-        <meta name="description" content={summary} />
+        <meta name="description" content={{ summary }} />
       </Helmet>
-      <Content content={content} />
+      <Content content={content} slug={slug} />
     </Layout>
   );
 };

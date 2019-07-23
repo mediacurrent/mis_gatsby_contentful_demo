@@ -4,7 +4,9 @@ exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-    const pageTemplate = path.resolve(`src/templates/BasicPageTemplate/index.js`);
+    const pageTemplate = path.resolve(
+      `src/templates/BasicPageTemplate/index.js`
+    );
 
     resolve(
       graphql(
@@ -12,7 +14,7 @@ exports.createPages = ({ actions, graphql }) => {
           {
             allContentfulBasicPage {
               edges {
-                 node {
+                node {
                   id: contentful_id
                   pageSlug
                 }
@@ -20,21 +22,26 @@ exports.createPages = ({ actions, graphql }) => {
             }
           }
         `
-      )
-        .then((result) => {
-          if (result.errors) reject(result.errors);
-          if (!result.data) reject('No data found. Fix your GraphQL stuff');
-          console.log('Creating Page Nodes');
-          result.data.allContentfulBasicPage.edges.forEach(({ node }) => {
-            createPage({
-              path: node.pageSlug,
-              component: pageTemplate,
-              context: {
-                id: node.id
-              }
-            })
+      ).then((result) => {
+        if (result.errors) {
+          reject(result.errors);
+        }
+        if (!result.data) {
+          reject('No data found. Fix your GraphQL stuff');
+        }
+
+        console.log('Creating Page Nodes');
+        result.data.allContentfulBasicPage.edges.forEach(({ node }) => {
+          const slug = node.pageSlug || '/';
+          createPage({
+            path: slug,
+            component: pageTemplate,
+            context: {
+              id: node.id
+            }
           });
-        })
-    )
-  })
-}
+        });
+      })
+    );
+  });
+};
