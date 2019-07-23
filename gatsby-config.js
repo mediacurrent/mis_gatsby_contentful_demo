@@ -12,7 +12,7 @@ module.exports = {
     menuLinks: [
       {
         uri: '/page/about-contentful',
-        title: 'About Rain/Contentful'
+        title: 'About Contentful'
       },
       {
         uri: '/page/partner-us',
