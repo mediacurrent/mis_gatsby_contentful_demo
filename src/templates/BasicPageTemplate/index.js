@@ -11,9 +11,6 @@ import Content from '../../components/fields/Content';
 const BasicPageTemplate = ({ data }) => {
   const { title, summary, content, slug } = data.contentfulBasicPage;
 
-  // Ad-hoc video treatment for homepage.
-  //const home_video_hero = slug === '/';
-
   return (
     <Layout>
       <Helmet>
