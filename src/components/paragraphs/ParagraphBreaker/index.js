@@ -8,22 +8,20 @@ import Heading from '../../fields/Heading';
 
 import './style.scss';
 
-const ParagraphBreaker = (props) => {
-
-  const {classes, eyebrow, heading, text, link, r} = props.r.cards[0];
-  let media;
-  try {
-    media = r.media.r.image.localFile.cis.f;
-  }
-  catch {
-    media = null;
-  };
-
+const ParagraphBreaker = ({
+  classes,
+  eyebrow,
+  heading,
+  text,
+  linkUri,
+  linkText,
+  media
+}) => {
   const breakerClasses = classNames(
     'section',
     'breaker',
-    {[`with-hero`]: media},
-    {[`${classes}`] : classes}
+    { [`with-hero`]: media },
+    { [`${classes}`]: classes }
   );
 
   return (
@@ -32,7 +30,7 @@ const ParagraphBreaker = (props) => {
         {media && (
           <div className="breaker__hero">
             <img
-              src={media.srcWebp}
+              src={media.fluid.srcWebp}
               srcSet={media.srcSetWebp}
               alt=""
               sizes="100vw"
@@ -50,22 +48,27 @@ const ParagraphBreaker = (props) => {
             {text && (
               <div
                 className="breaker__body body-text"
-                dangerouslySetInnerHTML={{ __html: text }}
+                dangerouslySetInnerHTML={{
+                  __html: text.childMarkdownRemark.html
+                }}
               />
             )}
-            {link && <Button {...link} classes="breaker__cta" />}
+            {linkUri && linkText && (
+              <Button uri={linkUri} title={linkText} classes="breaker__cta" />
+            )}
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 ParagraphBreaker.propTypes = {
-  classes: PropTypes.string,
-  r: PropTypes.shape({
-    cards: PropTypes.array
-  })
-}
+  classes: PropTypes.string
+};
+
+ParagraphBreaker.defaultProps = {
+  classes: ''
+};
 
 export default ParagraphBreaker;
