@@ -19,7 +19,7 @@ const Contact = (props) => {
             <div className="contact-us__items">
               <h4>What are your challenges?</h4>
               <p className="body-text">
-                We can show you how RAIN and other open source tools can
+                We can show you how Contentful and Gatsby can
                 increase efficiency within your digital ecosystem
               </p>
             </div>
