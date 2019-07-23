@@ -9,76 +9,105 @@ import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
 import './style.scss';
 
-const ParagraphGalleryCarousel = (props) => {
-  const {title, subhead, items, pid } = props;
-  const galleryItems = items.map(item => {
-    const src = item.r.media.r.image.file.cis.f.src;
-    const srcSet = item.r.media.r.image.file.cis.f.srcSet;
-    const thumb = item.r.thumb.file.cis.fixed.src;
+const ParagraphGalleryCarousel = ({ title, subhead, items, pid }) => {
+  const galleryItems = items.map((item) => {
+    const src = item.media.fluid.src;
+    const srcSet = item.media.fluid.srcSet;
+    const thumb = item.thumb.fluid.src;
     return {
       src,
       srcSet,
       alt: '',
-      thumb,
-    }
+      thumb
+    };
   });
   const settings = {
     customPaging: (i) => {
-      return(
+      return (
         <button className="gallery-carousel__nav-item">
           <img src={galleryItems[i].thumb} alt="" />
         </button>
-      )
+      );
     },
-    className: "gallery-carousel__carousel",
+    className: 'gallery-carousel__carousel',
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1
-  }
-  return(
+  };
+  return (
     <section className="section gallery-carousel">
       <div className="section__container gallery-carousel__container">
         <div className="section__content-container">
-          {title && <Heading level={2} classes="gallery-carousel__title"><span>{title}</span></Heading>}
-          {subhead && <Body classes="gallery-carousel__intro-text" text={subhead}/>}
+          {title && (
+            <Heading level={2} classes="gallery-carousel__title">
+              <span>{title}</span>
+            </Heading>
+          )}
+          {subhead && (
+            <Body classes="gallery-carousel__intro-text" text={subhead} />
+          )}
         </div>
         <Slider {...settings}>
           {galleryItems.map((item, key) => {
-            return(
-              <div className="gallery-carousel__item" key={`gallery-carousel--${pid}--${key}`}>
-                <img src={item.src} className="gallery-carousel__item-media" srcSet={item.srcSet} alt="" sizes="100vw" />
-                {(item.alt) && (<p className="gallery-carousel__item-text">{item.alt}</p>)}
+            return (
+              <div
+                className="gallery-carousel__item"
+                key={`gallery-carousel--${pid}--${key}`}
+              >
+                <img
+                  src={item.src}
+                  className="gallery-carousel__item-media"
+                  srcSet={item.srcSet}
+                  alt=""
+                  sizes="100vw"
+                />
+                {item.alt && (
+                  <p className="gallery-carousel__item-text">{item.alt}</p>
+                )}
               </div>
-            )
+            );
           })}
         </Slider>
       </div>
     </section>
   );
-}
+};
 
 ParagraphGalleryCarousel.propTypes = {
   /** Optional Title */
   title: PropTypes.string,
-  /** Optional Title level. Defaults to 2 */
-  title_level: PropTypes.number,
   /** Optional Intro */
   subhead: PropTypes.string,
-  /** Array of items [{src, alt, thumb:[{src, alt}]}] */
-  items: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string,
-    alt: PropTypes.string,
-    thumb: PropTypes.shape({
-      src: PropTypes.string,
-      alt: PropTypes.string
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      heading: PropTypes.string,
+      subhead: PropTypes.string,
+      eyebrow: PropTypes.string,
+      text: PropTypes.shape({
+        childMarkdownRemark: PropTypes.shape({
+          html: PropTypes.string
+        })
+      }),
+      thumb: PropTypes.shape({
+        fluid: PropTypes.shape({
+          src: PropTypes.string,
+          srcSet: PropTypes.string
+        })
+      }),
+      media: PropTypes.shape({
+        fluid: PropTypes.shape({
+          src: PropTypes.string,
+          srcSet: PropTypes.string
+        })
+      })
     })
-  }))
-}
+  )
+};
 
 ParagraphGalleryCarousel.defaultProps = {
   items: []
-}
+};
 
 export default ParagraphGalleryCarousel;

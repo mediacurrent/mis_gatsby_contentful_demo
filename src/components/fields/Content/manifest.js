@@ -4,6 +4,7 @@ import ParagraphFaq from '../../paragraphs/ParagraphFaq';
 import ParagraphCardList from '../../paragraphs/ParagraphCardList';
 import ParagraphQuote from '../../paragraphs/ParagraphQuote';
 import ParagraphMap from '../../paragraphs/ParagraphMap';
+import GalleryCarousel from '../../paragraphs/ParagraphGalleryCarousel';
 
 import { graphql } from 'gatsby';
 
@@ -31,6 +32,10 @@ export const componentManifest = {
   ContentfulMap: {
     label: 'Map',
     component: ParagraphMap
+  },
+  ContentfulGalleryCarousel: {
+    label: 'Gallery Carousel',
+    component: GalleryCarousel
   }
 };
 
@@ -127,6 +132,21 @@ export const mapFragment = graphql`
     map {
       lng: lon
       lat
+    }
+  }
+`;
+
+export const galleryCarouselFragment = graphql`
+  fragment galleryCarouselFragment on ContentfulGalleryCarousel {
+    title
+    subhead
+    items: carouselItem {
+      ...heroMediaFragment
+      thumb {
+        fluid(maxHeight: 100) {
+          ...GatsbyContentfulFluid_withWebp
+        }
+      }
     }
   }
 `;
