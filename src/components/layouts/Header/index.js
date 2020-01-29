@@ -13,7 +13,7 @@ const Header = ({ menuLinks }) => (
       <div className="section__container header__container" data-path="">
         <div className="logo-section">
           <a href="/">
-            <Icon name="RAIN-logo-navy-sm" className="icon icon-rain-logo" />
+            <img src="/images/mc-logo.png" alt="Logo" />
           </a>
         </div>
         <button
